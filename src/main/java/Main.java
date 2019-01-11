@@ -17,22 +17,18 @@ public class Main {
     }
 
     private static int[][] rotateMatrix90Degrees(int[][] matrix) {
+        int max = matrix.length - 1;
+        for (int i = 0; i <= max/2; i++) {
+            for (int j = i; j < max - i; j++) {
+                int coord1 = matrix[i][j];
+                int coord2 = matrix[j][max - i];
+                int coord3 = matrix[max - i][max - j];
+                int coord4 = matrix[max - j][i];
 
-        for (int i = 0; i < matrix[0].length; i++) {
-            int k = matrix[0].length - 1;
-            for (int j = 0; j < k; j++) {
-                int tmp = matrix[j][i];
-                matrix[j][i] = matrix[k][i];
-                matrix[k][i] = tmp;
-                k--;
-            }
-        }
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = i; j < matrix[0].length; j++) {
-                int tmp = matrix[j][i];
-                matrix[j][i] = matrix[i][j];
-                matrix[i][j] = tmp;
+                matrix[j][max - i] = coord1;
+                matrix[max -i][max - j] = coord2;
+                matrix[max - j][i] = coord3;
+                matrix[i][j] = coord4;
             }
         }
         return matrix;
